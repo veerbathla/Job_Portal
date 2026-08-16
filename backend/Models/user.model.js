@@ -21,7 +21,7 @@ const userSchema=new mongoose.Schema({
     },
     role:{
         type:String,
-        enum:['Student','Recruiter'],//enum is used when we want a user to choose something from given options e.g. role can be either student or recruiter nothing else
+        enum:['Candidate','Recruiter'],//enum is used when we want a user to choose something from given options e.g. role can be either student or recruiter nothing else
         required:true
     },
     profile:{
@@ -49,4 +49,4 @@ const userSchema=new mongoose.Schema({
     }
 },{timestamps:true})
 
-export const User=mongoose.model(User,userSchema)
+export const User=mongoose.model("User",userSchema)
