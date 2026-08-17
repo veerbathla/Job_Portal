@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
 
 
-const companySchma=new mongoose.Schema({
+const companySchema=new mongoose.Schema({
   name:{
     type:String,
-    required:true
+    required:true,
+    unique:true
   },
    description:{
     type:String,
@@ -17,11 +18,13 @@ const companySchma=new mongoose.Schema({
   },  
    logo:{
     type:String,//url of logo
-    required:true
   }, 
    userId:{
     type:mongoose.Schema.Types.ObjectId,
     ref:'User',
-    required:true
+    // required:true
   },
 },{timestamps:true})
+
+
+export const Company=mongoose.model("Company",companySchema);

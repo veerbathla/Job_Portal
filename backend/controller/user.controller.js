@@ -115,19 +115,16 @@ export const updateProfile=async(req,res)=>{
     try{
        const { fullname, email, phoneNo,bio,skills } = req.body; 
        const file =req.file;
-       if (!fullname || !email || !phoneNo || !bio ||!skills) {
-       return res.status(400).json({
-        message: "Something is missing",
-        success: false,
-      });
-    }
+       
 
     //cloudinary
 
 
-
-
-    const skillsArray=skills.split(",")
+    let skillsArray;
+    if(skills){
+       skillsArray=skills.split(",")
+    }
+    
     const userId=req.id//middleware authentication
     let user=await User.findById(userId)
     if(!user)
@@ -137,10 +134,15 @@ export const updateProfile=async(req,res)=>{
          success:false
         })
     }
-    user.fullname=fullname,
-    user.email=email,
-    user.phoneNo=phoneNo,
-    user.profile.bio=bio,
+    if(fullname)
+    user.fullname=fullname
+    if(email)
+    user.email=email
+    if(phoneNo)
+    user.phoneNo=phoneNo
+    if(bio)
+    user.profile.bio=bio
+    if(skillsArray)
     user.profile.skills=skillsArray
 
     //resume comes later here

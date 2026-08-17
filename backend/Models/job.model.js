@@ -26,11 +26,15 @@ const jobSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  experience:{
+    type: String,
+    required: true,
+  },
   openings: {
     type: Number,
     required: true,
   },
-  Company: {
+  company: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Company",
     required: true,
